@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <ul><li><a href="index.html" class="the-logo">Rempla</a></li><li class="breadcrumb">My Dashboard</li></ul>
+            <ul>
+                <li class="dash-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" placeholder="Search gifts, people, docs..."></li>
+                <li><a href="#" class="dash-back"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"></path></svg> Back to Site</a></li>
+                <li class="notifications"><a href="#" class="inbox-bell"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"></path></svg></a>
+                    <div class="notif-dropdown open" id="notif-dropdown">
+                        <div class="notif-dropdown-header">
+                            <span>Notifications</span>
+                            <button onclick="clearNotifs()">Mark all read</button>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-icon" style="background:rgba(201,169,110,0.1);">📦</div>
+                            <div>
+                            <div class="notif-text"><strong>Vault Box Shipped</strong> — Your medium vault box for "Grandfather's Watch" has been shipped and will arrive in 3–5 business days.</div>
+                            <div class="notif-time">2 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-icon" style="background:rgba(80,160,80,0.1);">✓</div>
+                            <div>
+                            <div class="notif-text"><strong>Plan Protector Confirmed</strong> — Susan Harlow has accepted her role as your Plan Protector.</div>
+                            <div class="notif-time">1 day ago</div>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <div class="notif-icon" style="background:rgba(80,120,200,0.08);">📄</div>
+                            <div>
+                            <div class="notif-text"><strong>Document Uploaded</strong> — Durable_Power_of_Attorney.docx was successfully uploaded and categorized.</div>
+                            <div class="notif-time">3 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#" class="dash-avatar">M</a></li>
+            </ul>
+        </header>
+        <div class="dash-content">
+            <aside>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-label">Main</div>
+                    <div class="sidebar-link" id="sl-overview" onclick="setDashTab('overview')">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+                        Dashboard
+                    </div>
+                    <div class="sidebar-link active" id="sl-family" onclick="setDashTab('family')">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path></svg>
+                        My Planning Tree
+                    </div>
+                    <div class="sidebar-link" id="sl-plans" onclick="setDashTab('plans')">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                        My Remembrance Plan
+                    </div>
+                    <div class="sidebar-link" id="sl-vault" onclick="setDashTab('vault')">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="1"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg>
+                        My Vault Boxes
+                    </div>
+                    <div class="sidebar-link" id="sl-documents" onclick="setDashTab('documents')">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                        My Estate Documents
+                    </div>
+                    <div class="sidebar-link" id="sl-digital" onclick="setDashTab('digital')">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path><path d="M9 9h1m4 0h1M9 12h6"></path></svg>
+                        My Digital Legacy
+                    </div>
+                    <div class="sidebar-link" id="sl-protectors" onclick="setDashTab('protectors')">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        My Plan Protectors
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-label">Account</div>
+                    <div class="sidebar-link" id="sl-settings" onclick="setDashTab('settings')">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"></path></svg>
+                        Settings
+                    </div>
+                </div>
+                <div class="sidebar-user">
+                    <div class="dash-avatar" style="width:32px;height:32px;font-size:12px;">M</div>
+                    <div>
+                        <div class="sidebar-user-name">Matthew</div>
+                        <div class="sidebar-user-plan">Legacy Plan</div>
+                    </div>
+                </div>
+            </aside>
+            <main class="dash-main">
+                <div class="tab-panel active" id="tab-family">
+                    <div class="planning-tree-header">
+                    <div>
+                        <div class="section-eyebrow">My Planning Tree</div>
+                        <div class="planning-tree-title">Grow Your Planning Tree</div>
+                    </div>
+                    <button class="btn-add-member" onclick="openAddMemberModal()">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        Add Member
+                    </button>
+                    </div>
+
+                    <!-- Legend -->
+                    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px;">
+                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;"><div style="width:12px;height:12px;background:rgba(201,169,110,0.2);border:1.5px solid #c9a96e;border-radius:2px;"></div>Remembrance Plan</div>
+                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;"><div style="width:12px;height:12px;background:rgba(80,120,200,0.12);border:1.5px solid #6080c8;border-radius:2px;"></div>Estate Plan</div>
+                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;"><div style="width:12px;height:12px;background:rgba(80,160,80,0.12);border:1.5px solid #50a050;border-radius:2px;"></div>Both</div>
+                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;"><div style="width:12px;height:12px;background:#f7f3ec;border:1.5px dashed #d4c4ae;border-radius:2px;"></div>No plan yet</div>
+                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;">
+                            <svg style="width:13px;height:13px;stroke:#7b5ea7;fill:none;stroke-width:2;" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            Plan Protector
+                        </div>
+                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;">
+                            <svg style="width:13px;height:13px;stroke:#2a8a9a;fill:none;stroke-width:2;" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+                            Digital Legacy Beneficiary
+                        </div>
+                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;">
+                            <svg style="width:13px;height:13px;stroke:#8a6030;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="5" y1="21" x2="19" y2="21"></line><line x1="3" y1="7" x2="21" y2="7"></line><polyline points="3,7 6,13 9,7"></polyline><polyline points="15,7 18,13 21,7"></polyline></svg>
+                            Estate Fiduciary
+                        </div>
+                    </div>
+
+                    <!-- View Toggle -->
+                    <div style="display:flex;align-items:center;margin-bottom:20px;">
+                    <div class="tree-view-toggle">
+                        <span class="tree-view-toggle-label active" id="toggle-label-tree">Tree</span>
+                        <button class="tree-view-toggle-track" id="tree-view-toggle-btn" onclick="toggleTreeView()"></button>
+                        <span class="tree-view-toggle-label" id="toggle-label-list">List</span>
+                    </div>
+                    </div>
+
+                    <div style="display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start;">
+                    <!-- Shared node detail popup (works for both tree and list views) -->
+                    <div id="node-detail" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:320px;background:white;border:1px solid #ede5d8;padding:28px;z-index:100;box-shadow:0 16px 48px rgba(0,0,0,0.15);">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                        <div id="nd-name" style="font-size:17px;font-weight:600;color:#2a2015;"></div>
+                        <button onclick="document.getElementById('node-detail').style.display='none';document.getElementById('node-detail-overlay').style.display='none'" style="background:none;border:none;cursor:pointer;color:#9a8c78;font-size:20px;line-height:1;">×</button>
+                        </div>
+                        <div id="nd-relation" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9a8c78;margin-bottom:16px;"></div>
+                        <div id="nd-gifts" style="display:flex;flex-direction:column;gap:8px;"></div>
+                        <button onclick="document.getElementById('node-detail').style.display='none';document.getElementById('node-detail-overlay').style.display='none';setDashTab('plans')" style="margin-top:20px;width:100%;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:#c9a96e;color:#111827;border:none;padding:12px;cursor:pointer;">Add Gift for This Person</button>
+                    </div>
+                    <div id="node-detail-overlay" onclick="document.getElementById('node-detail').style.display='none';this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.2);z-index:99;"></div>
+
+                    <!-- Tree View (default) -->
+                    <div id="tree-view-tree" class="tree-canvas" style="position:relative;">
+
+                        <div class="tree-wrap" id="tree-wrap">
+                        <!-- GENERATION 3 — GRANDCHILDREN -->
+                        <div class="tree-generation" id="tree-gen-3">
+                            <div class="tree-generation-group" style="flex:3;" id="tree-group-robert-children">
+                            <div class="tree-node" style="cursor:pointer;border-color:#50a050;background:rgba(80,160,80,0.04);flex:1;" onclick="showNodeDetail('James','Grandson',[{type:'Rempla',label:'Grandfather\'s watch · 16th birthday, 5 yrs after passing'},{type:'estate',label:'Trust beneficiary · college fund at age 21'}])">
+                                <div class="tree-node-avatar" style="background:#ede5d8;">👦</div>
+                                <div class="tree-node-info"><div class="tree-node-name">James</div><div class="tree-node-relation">Grandson · gift + bequest</div></div>
+                                <div style="display:flex;gap:3px;margin-left:auto;"><div style="width:7px;height:7px;border-radius:50%;background:#c9a96e;"></div><div style="width:7px;height:7px;border-radius:50%;background:#6080c8;"></div></div>
+                            </div>
+                            <div class="tree-node" style="cursor:pointer;border-style:dashed;opacity:0.8;flex:1;" onclick="showNodeDetail('Emma','Granddaughter',[{type:'none',label:'No estate bequest recorded'},{type:'none',label:'No remembrance gifts yet — ask Rempla'}])">
+                                <div class="tree-node-avatar" style="background:#ede5d8;">👧</div>
+                                <div class="tree-node-info"><div class="tree-node-name">Emma</div><div class="tree-node-relation">Granddaughter</div></div>
+                            </div>
+                            <div class="tree-node" style="cursor:pointer;border-style:dashed;opacity:0.8;flex:1;" onclick="showNodeDetail('Noah','Grandson',[{type:'none',label:'No estate bequest recorded'},{type:'none',label:'No remembrance gifts yet — ask Rempla'}])">
+                                <div class="tree-node-avatar" style="background:#ede5d8;">👦</div>
+                                <div class="tree-node-info"><div class="tree-node-name">Noah</div><div class="tree-node-relation">Grandson</div></div>
+                            </div>
+                            </div>
+                            <div class="tree-generation-group" style="flex:1;" id="tree-group-sarah-children">
+                            <div class="tree-node" style="cursor:pointer;border-style:dashed;opacity:0.75;flex:1;" onclick="showNodeDetail('Lily','Granddaughter',[{type:'none',label:'No estate bequest recorded'},{type:'none',label:'No remembrance gifts yet — ask Rempla'}])">
+                                <div class="tree-node-avatar" style="background:#ede5d8;">👧</div>
+                                <div class="tree-node-info"><div class="tree-node-name">Lily</div><div class="tree-node-relation">Granddaughter</div></div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic connector: grandchildren → children -->
+                        <div class="tree-gen-spacer" id="connector-gc-to-children"><svg style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:visible;" class="tree-connector-layer"><line x1="185.625" y1="0" x2="185.625" y2="20"></line><line x1="562.875" y1="0" x2="562.875" y2="20"></line><line x1="940.125" y1="0" x2="940.125" y2="20"></line><line x1="185.625" y1="20" x2="940.125" y2="20"></line><line x1="562.875" y1="20" x2="562.875" y2="40"></line><line x1="1319.375" y1="0" x2="1319.375" y2="40"></line></svg></div>
+
+                        <!-- GENERATION 2 — CHILDREN -->
+                        <div class="tree-generation" id="tree-gen-2">
+                            <div class="tree-generation-group" style="flex:3;justify-content:center;" id="tree-group-robert">
+                            <div class="tree-node" style="cursor:pointer;border-color:#6080c8;background:rgba(80,120,200,0.04);flex:1;max-width:200px;" onclick="showNodeDetail('Robert','Son',[{type:'estate',label:'Bequest: Investment portfolio (1/3 share)'},{type:'fiduciary',label:'Personal Representative · Named executor of will'},{type:'digital',label:'Digital Legacy: Gmail'}])">
+                                <div class="tree-node-avatar">👤</div>
+                                <div class="tree-node-info"><div class="tree-node-name">Robert</div><div class="tree-node-relation">Son · bequest · executor</div></div>
+                                <div style="display:flex;flex-direction:column;gap:4px;margin-left:auto;align-items:flex-end;">
+                                <div style="display:flex;gap:3px;"><div style="width:7px;height:7px;border-radius:50%;background:#6080c8;"></div></div>
+                                <div style="display:flex;gap:4px;">
+                                    <svg title="Digital Legacy Beneficiary" style="width:11px;height:11px;stroke:#2a8a9a;fill:none;stroke-width:2;" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+                                    <svg title="Estate Fiduciary" style="width:11px;height:11px;stroke:#8a6030;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="5" y1="21" x2="19" y2="21"></line><line x1="3" y1="7" x2="21" y2="7"></line><polyline points="3,7 6,13 9,7"></polyline><polyline points="15,7 18,13 21,7"></polyline></svg>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="tree-generation-group" style="flex:1;justify-content:center;" id="tree-group-sarah">
+                            <div class="tree-node" style="cursor:pointer;border-color:#c9a96e;background:rgba(201,169,110,0.04);flex:1;max-width:200px;" onclick="showNodeDetail('Sarah','Daughter',[{type:'estate',label:'Bequest: Investment portfolio (1/3 share)'},{type:'Rempla',label:'No remembrance gift yet'},{type:'fiduciary',label:'Trustee · Family trust successor trustee'}])">
+                                <div class="tree-node-avatar">👤</div>
+                                <div class="tree-node-info"><div class="tree-node-name">Sarah</div><div class="tree-node-relation">Daughter · bequest · trustee</div></div>
+                                <div style="display:flex;flex-direction:column;gap:4px;margin-left:auto;align-items:flex-end;">
+                                <div style="width:7px;height:7px;border-radius:50%;background:#6080c8;"></div>
+                                <svg title="Estate Fiduciary" style="width:11px;height:11px;stroke:#8a6030;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="5" y1="21" x2="19" y2="21"></line><line x1="3" y1="7" x2="21" y2="7"></line><polyline points="3,7 6,13 9,7"></polyline><polyline points="15,7 18,13 21,7"></polyline></svg>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic connector: children → trunk -->
+                        <div class="tree-gen-spacer" id="connector-children-to-trunk"><svg style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:visible;" class="tree-connector-layer"><line x1="562.875" y1="0" x2="562.875" y2="20"></line><line x1="1319.375" y1="0" x2="1319.375" y2="20"></line><line x1="562.875" y1="20" x2="1319.375" y2="20"></line><line x1="941.125" y1="20" x2="941.125" y2="40"></line></svg></div>
+
+                        <!-- GENERATION 1 — TRUNK -->
+                        <div class="tree-row" style="justify-content:center;">
+                            <div class="tree-node primary" style="cursor:pointer;border-color:#c9a96e;" onclick="showNodeDetail('Matthew','Account Holder',[{type:'Rempla',label:'3 gifts planned via Rempla'},{type:'estate',label:'Primary beneficiary of estate'}])">
+                            <div class="tree-node-avatar" style="background:linear-gradient(135deg,#c9a96e,#8a6030);">👤</div>
+                            <div class="tree-node-info"><div class="tree-node-name">You (Matthew)</div><div class="tree-node-relation">Account Holder</div></div>
+                            </div>
+                            <div class="tree-spacer" style="display:flex;align-items:center;font-size:18px;color:#d4c4ae;">♦</div>
+                            <div class="tree-node" style="cursor:pointer;border-color:#50a050;background:rgba(80,160,80,0.04);" onclick="showNodeDetail('Margaret','Wife',[{type:'Rempla',label:'Anniversary roses · every year for life'},{type:'Rempla',label:'5 handwritten letters · annual delivery'},{type:'estate',label:'Trust beneficiary · family home + investments'},{type:'digital',label:'Digital Legacy: Facebook, Chase Bank'}])">
+                            <div class="tree-node-avatar" style="background:linear-gradient(135deg,#d4b8a0,#9a7060);">👤</div>
+                            <div class="tree-node-info"><div class="tree-node-name">Margaret</div><div class="tree-node-relation">Wife · 2 gifts + bequest</div></div>
+                            <div style="display:flex;flex-direction:column;gap:4px;margin-left:auto;align-items:flex-end;">
+                                <div style="display:flex;gap:3px;"><div style="width:7px;height:7px;border-radius:50%;background:#c9a96e;"></div><div style="width:7px;height:7px;border-radius:50%;background:#6080c8;"></div></div>
+                                <div style="display:flex;gap:4px;">
+                                <svg title="Digital Legacy Beneficiary" style="width:11px;height:11px;stroke:#2a8a9a;fill:none;stroke-width:2;" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- EXTENDED NETWORK DIVIDER -->
+                        <div style="position:relative;width:100%;margin:32px 0 16px;">
+                            <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:#ede5d8;"></div>
+                            <div style="position:relative;display:inline-block;background:white;padding:0 14px;left:50%;transform:translateX(-50%);">
+                            <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#9a8c78;">Extended Planning Network</span>
+                            </div>
+                        </div>
+
+                        <!-- EXTENDED NETWORK — PLAN PROTECTORS & OTHERS -->
+                        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:0 8px;">
+                            <div class="tree-node" style="cursor:pointer;border-color:#7b5ea7;background:rgba(123,94,167,0.05);min-width:160px;" onclick="showNodeDetail('Susan Harlow','Sister · Plan Protector',[{type:'protector',label:'Active Plan Protector · Accepted Feb 23, 2026'},{type:'none',label:'No estate bequest recorded'},{type:'none',label:'No remembrance gifts planned'}])">
+                            <div class="tree-node-avatar" style="background:linear-gradient(135deg,#c9a9e8,#7b5ea7);color:white;font-weight:600;">S</div>
+                            <div class="tree-node-info">
+                                <div class="tree-node-name">Susan Harlow</div>
+                                <div class="tree-node-relation">Sister · Plan Protector</div>
+                            </div>
+                            <div style="margin-left:auto;display:flex;flex-direction:column;gap:3px;align-items:center;">
+                                <svg title="Plan Protector" style="width:14px;height:14px;stroke:#7b5ea7;fill:rgba(123,94,167,0.15);stroke-width:2;" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </div>
+                            </div>
+
+                            <div class="tree-node" style="cursor:pointer;border-color:#c9a96e;background:rgba(201,169,110,0.04);min-width:160px;" onclick="showNodeDetail('Daniel Walsh','Close Friend',[{type:'Rempla',label:'Golf Experience · Annual, every April 8th (birthday)'},{type:'none',label:'No estate bequest recorded'}])">
+                            <div class="tree-node-avatar" style="background:linear-gradient(135deg,#a0c080,#507030);color:white;font-weight:600;">D</div>
+                            <div class="tree-node-info">
+                                <div class="tree-node-name">Daniel Walsh</div>
+                                <div class="tree-node-relation">Close Friend · gift</div>
+                            </div>
+                            <div style="margin-left:auto;display:flex;flex-direction:column;gap:3px;align-items:center;">
+                                <div style="width:7px;height:7px;border-radius:50%;background:#c9a96e;"></div>
+                            </div>
+                            </div>
+
+                            <!-- Placeholder for future non-family additions -->
+                            <div class="tree-node" style="border-style:dashed;opacity:0.5;cursor:pointer;min-width:140px;justify-content:center;" onclick="openAddMemberModal()">
+                            <div style="font-size:20px;color:#9a8c78;margin-right:8px;">+</div>
+                            <div class="tree-node-info"><div class="tree-node-name" style="color:#9a8c78;">Add Person</div><div class="tree-node-relation">Friend, advisor, or other</div></div>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+
+                    <!-- List View (hidden by default) -->
+                    <div id="tree-view-list" class="tree-list-view">
+
+                        <!-- Account Holder -->
+                        <div class="tree-list-group">
+                        <div class="tree-list-group-title">Account Holder</div>
+                        <div class="tree-list-row" style="border-left:3px solid #c9a96e;" onclick="showNodeDetail('Matthew','Account Holder',[{type:'rempla',label:'3 gifts planned via Rempla'},{type:'estate',label:'Primary beneficiary of estate'}])">
+                            <div class="tree-list-avatar" style="background:linear-gradient(135deg,#c9a96e,#8a6030);">👤</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">You (Matthew)</div>
+                            <div class="tree-list-relation">Account Holder</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-rempla"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="rgba(201,169,110,0.2)" stroke="#c9a96e" stroke-width="1.5"></rect></svg> Remembrance</span>
+                            <span class="tree-list-tag tag-estate"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="rgba(80,120,200,0.12)" stroke="#6080c8" stroke-width="1.5"></rect></svg> Estate</span>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- Spouse -->
+                        <div class="tree-list-group">
+                        <div class="tree-list-group-title">Spouse</div>
+                        <div class="tree-list-row" style="border-left:3px solid #50a050;" onclick="showNodeDetail('Margaret','Wife',[{type:'rempla',label:'Anniversary roses · every year for life'},{type:'rempla',label:'5 handwritten letters · annual delivery'},{type:'estate',label:'Trust beneficiary · family home + investments'},{type:'digital',label:'Digital Legacy: Facebook, Chase Bank'}])">
+                            <div class="tree-list-avatar" style="background:linear-gradient(135deg,#d4b8a0,#9a7060);">👤</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">Margaret</div>
+                            <div class="tree-list-relation">Wife</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-rempla"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="rgba(201,169,110,0.2)" stroke="#c9a96e" stroke-width="1.5"></rect></svg> Remembrance</span>
+                            <span class="tree-list-tag tag-estate"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="rgba(80,120,200,0.12)" stroke="#6080c8" stroke-width="1.5"></rect></svg> Estate</span>
+                            <span class="tree-list-tag tag-digital"><svg style="width:11px;height:11px;stroke:#2a8a9a;fill:none;stroke-width:2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg> Digital Legacy</span>
+                            </div>
+                            <div class="tree-list-status">2 gifts · bequest</div>
+                        </div>
+                        </div>
+
+                        <!-- Children -->
+                        <div class="tree-list-group">
+                        <div class="tree-list-group-title">Children</div>
+                        <div class="tree-list-row" style="border-left:3px solid #6080c8;" onclick="showNodeDetail('Robert','Son',[{type:'estate',label:'Bequest: Investment portfolio (1/3 share)'},{type:'fiduciary',label:'Personal Representative · Named executor of will'},{type:'digital',label:'Digital Legacy: Gmail'}])">
+                            <div class="tree-list-avatar" style="background:#ede5d8;">👤</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">Robert</div>
+                            <div class="tree-list-relation">Son</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-estate"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="rgba(80,120,200,0.12)" stroke="#6080c8" stroke-width="1.5"></rect></svg> Estate</span>
+                            <span class="tree-list-tag tag-fiduciary"><svg style="width:11px;height:11px;stroke:#8a6030;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="5" y1="21" x2="19" y2="21"></line><line x1="3" y1="7" x2="21" y2="7"></line><polyline points="3,7 6,13 9,7"></polyline><polyline points="15,7 18,13 21,7"></polyline></svg> Executor</span>
+                            <span class="tree-list-tag tag-digital"><svg style="width:11px;height:11px;stroke:#2a8a9a;fill:none;stroke-width:2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg> Digital Legacy</span>
+                            </div>
+                            <div class="tree-list-status">Bequest only</div>
+                        </div>
+                        <div class="tree-list-row" style="border-left:3px solid #c9a96e;" onclick="showNodeDetail('Sarah','Daughter',[{type:'estate',label:'Bequest: Investment portfolio (1/3 share)'},{type:'rempla',label:'No remembrance gift yet'},{type:'fiduciary',label:'Trustee · Family trust successor trustee'}])">
+                            <div class="tree-list-avatar" style="background:#ede5d8;">👤</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">Sarah</div>
+                            <div class="tree-list-relation">Daughter</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-estate"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="rgba(80,120,200,0.12)" stroke="#6080c8" stroke-width="1.5"></rect></svg> Estate</span>
+                            <span class="tree-list-tag tag-fiduciary"><svg style="width:11px;height:11px;stroke:#8a6030;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="5" y1="21" x2="19" y2="21"></line><line x1="3" y1="7" x2="21" y2="7"></line><polyline points="3,7 6,13 9,7"></polyline><polyline points="15,7 18,13 21,7"></polyline></svg> Trustee</span>
+                            </div>
+                            <div class="tree-list-status">Bequest only</div>
+                        </div>
+                        </div>
+
+                        <!-- Grandchildren -->
+                        <div class="tree-list-group">
+                        <div class="tree-list-group-title">Grandchildren</div>
+                        <div class="tree-list-row" style="border-left:3px solid #50a050;" onclick="showNodeDetail('James','Grandson',[{type:'rempla',label:'Grandfather\'s watch · 16th birthday, 5 yrs after passing'},{type:'estate',label:'Trust beneficiary · college fund at age 21'}])">
+                            <div class="tree-list-avatar" style="background:#ede5d8;">👦</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">James</div>
+                            <div class="tree-list-relation">Grandson · Robert's son</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-rempla"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="rgba(201,169,110,0.2)" stroke="#c9a96e" stroke-width="1.5"></rect></svg> Remembrance</span>
+                            <span class="tree-list-tag tag-estate"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="rgba(80,120,200,0.12)" stroke="#6080c8" stroke-width="1.5"></rect></svg> Estate</span>
+                            </div>
+                            <div class="tree-list-status">Gift + bequest</div>
+                        </div>
+                        <div class="tree-list-row" style="border-left:3px dashed #d4c4ae;" onclick="showNodeDetail('Emma','Granddaughter',[{type:'none',label:'No estate bequest recorded'},{type:'none',label:'No remembrance gifts yet — ask Rempla'}])">
+                            <div class="tree-list-avatar" style="background:#ede5d8;">👧</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">Emma</div>
+                            <div class="tree-list-relation">Granddaughter · Robert's daughter</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-none"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="#f7f3ec" stroke="#d4c4ae" stroke-width="1.5" stroke-dasharray="2,2"></rect></svg> No plan</span>
+                            </div>
+                        </div>
+                        <div class="tree-list-row" style="border-left:3px dashed #d4c4ae;" onclick="showNodeDetail('Noah','Grandson',[{type:'none',label:'No estate bequest recorded'},{type:'none',label:'No remembrance gifts yet — ask Rempla'}])">
+                            <div class="tree-list-avatar" style="background:#ede5d8;">👦</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">Noah</div>
+                            <div class="tree-list-relation">Grandson · Robert's son</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-none"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="#f7f3ec" stroke="#d4c4ae" stroke-width="1.5" stroke-dasharray="2,2"></rect></svg> No plan</span>
+                            </div>
+                        </div>
+                        <div class="tree-list-row" style="border-left:3px dashed #d4c4ae;" onclick="showNodeDetail('Lily','Granddaughter',[{type:'none',label:'No estate bequest recorded'},{type:'none',label:'No remembrance gifts yet — ask Rempla'}])">
+                            <div class="tree-list-avatar" style="background:#ede5d8;">👧</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">Lily</div>
+                            <div class="tree-list-relation">Granddaughter · Sarah's daughter</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-none"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="#f7f3ec" stroke="#d4c4ae" stroke-width="1.5" stroke-dasharray="2,2"></rect></svg> No plan</span>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- Extended Network -->
+                        <div class="tree-list-group">
+                        <div class="tree-list-group-title">Extended Planning Network</div>
+                        <div class="tree-list-row" style="border-left:3px solid #7b5ea7;" onclick="showNodeDetail('Susan Harlow','Sister · Plan Protector',[{type:'protector',label:'Active Plan Protector · Accepted Feb 23, 2026'},{type:'none',label:'No estate bequest recorded'},{type:'none',label:'No remembrance gifts planned'}])">
+                            <div class="tree-list-avatar" style="background:linear-gradient(135deg,#c9a9e8,#7b5ea7);color:white;font-weight:600;font-size:14px;">S</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">Susan Harlow</div>
+                            <div class="tree-list-relation">Sister</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-protector"><svg style="width:11px;height:11px;stroke:#7b5ea7;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Plan Protector</span>
+                            </div>
+                            <div class="tree-list-status"><span class="status-dot" style="background:#4caf50;"></span>Active</div>
+                        </div>
+                        <div class="tree-list-row" style="border-left:3px solid #c9a96e;" onclick="showNodeDetail('Daniel Walsh','Close Friend',[{type:'rempla',label:'Golf Experience · Annual, every April 8th (birthday)'},{type:'none',label:'No estate bequest recorded'}])">
+                            <div class="tree-list-avatar" style="background:linear-gradient(135deg,#a0c080,#507030);color:white;font-weight:600;font-size:14px;">D</div>
+                            <div class="tree-list-info">
+                            <div class="tree-list-name">Daniel Walsh</div>
+                            <div class="tree-list-relation">Close Friend</div>
+                            </div>
+                            <div class="tree-list-tags">
+                            <span class="tree-list-tag tag-rempla"><svg style="width:10px;height:10px" viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="rgba(201,169,110,0.2)" stroke="#c9a96e" stroke-width="1.5"></rect></svg> Rempla Gift</span>
+                            </div>
+                            <div class="tree-list-status">1 gift</div>
+                        </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Family Chat -->
+                    <div>
+                        <div class="rempla-chat">
+                        <div class="chat-header">
+                            <div class="chat-ai-avatar"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M6 20v-2a6 6 0 0112 0v2"></path></svg></div>
+                            <div class="chat-header-title">
+                            <div class="chat-header-name">Rempla</div>
+                            <div class="chat-header-status">AI Planning Guide · Online</div>
+                            </div>
+                            <div class="chat-typing-dots"><span></span><span></span><span></span></div>
+                        </div>
+                        <div class="chat-messages" id="family-chat-messages">
+                            <div class="chat-msg chat-msg-ai">Hi Matthew! I'm here to help you grow your planning tree and ensure everyone in your planning universe is covered.<br><br>You currently have <strong>9 planning tree members</strong> across family, friends, and your extended network. Click any person on the tree to view or update their plans.</div>
+                            <div class="chat-msg chat-msg-ai">A few things I noticed:<br>• <strong>Emma, Noah &amp; Lily</strong> have no remembrance gifts or estate bequests yet<br>• <strong>Robert &amp; Sarah</strong> each have an estate bequest but no remembrance gift<br>• <strong>Susan Harlow</strong> is your only Plan Protector — a second is recommended</div>
+                            <div class="chat-suggestion" onclick="chatSuggest('family-chat',this,'Help me add a gift for Emma, Noah and Lily')">✦ Add gifts for Emma, Noah &amp; Lily</div>
+                            <div class="chat-suggestion" onclick="chatSuggest('family-chat',this,'Help me add a remembrance gift for Robert and Sarah')">✦ Add remembrance gifts for Robert &amp; Sarah</div>
+                            <div class="chat-suggestion" onclick="chatSuggest('family-chat',this,'How do I add a second Plan Protector?')">✦ How do I add a second Plan Protector?</div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input class="chat-input" id="family-chat-input" placeholder="Ask Rempla about your family…" type="text" onkeydown="if(event.key==='Enter')sendChat('family-chat')">
+                            <button class="chat-send" onclick="sendChat('family-chat')">
+                            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            </button>
+                        </div>
+                        </div>
+                        <!-- Completion progress -->
+                        <div style="background:white;border:1px solid #ede5d8;padding:20px;margin-top:16px;">
+                        <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9a8c78;margin-bottom:14px;">Profile Completion</div>
+                        <div style="display:flex;flex-direction:column;gap:10px;">
+                            <div>
+                            <div style="display:flex;justify-content:space-between;font-size:12px;color:#5a4e3a;margin-bottom:5px;"><span>Planning Tree Members Added</span><span style="color:#a07840;font-weight:500;">9 of 9</span></div>
+                            <div style="height:3px;background:#ede5d8;"><div style="height:100%;width:100%;background:#50a050;"></div></div>
+                            </div>
+                            <div>
+                            <div style="display:flex;justify-content:space-between;font-size:12px;color:#5a4e3a;margin-bottom:5px;"><span>Remembrance Gifts</span><span style="color:#a07840;font-weight:500;">3 of 9 members</span></div>
+                            <div style="height:3px;background:#ede5d8;"><div style="height:100%;width:60%;background:#c9a96e;"></div></div>
+                            </div>
+                            <div>
+                            <div style="display:flex;justify-content:space-between;font-size:12px;color:#5a4e3a;margin-bottom:5px;"><span>Estate Bequests Linked</span><span style="color:#a07840;font-weight:500;">4 of 9 members</span></div>
+                            <div style="height:3px;background:#ede5d8;"><div style="height:100%;width:80%;background:#6080c8;"></div></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--                  ADD MEMBER MODAL                  -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <style>
+    .modal-overlay {
+        display: none; position: fixed; inset: 0; z-index: 500;
+        background: rgba(10, 15, 25, 0.75); backdrop-filter: blur(4px);
+        align-items: center; justify-content: center;
+        padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+        background: #f7f3ec; width: 100%; max-width: 580px;
+        max-height: 90vh; overflow-y: auto;
+        box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+        animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn {
+        from { opacity: 0; transform: translateY(20px) scale(0.98); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-header {
+        background: #111827; padding: 24px 32px;
+        display: flex; justify-content: space-between; align-items: center;
+        position: sticky; top: 0; z-index: 2;
+    }
+    .modal-header-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px; font-weight: 400; color: white;
+    }
+    .modal-header-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 3px; }
+    .modal-close {
+        background: none; border: none; cursor: pointer;
+        color: rgba(255,255,255,0.5); font-size: 24px; line-height: 1;
+        transition: color 0.2s; padding: 4px;
+    }
+    .modal-close:hover { color: #c9a96e; }
+    .modal-body { padding: 32px; }
+    .modal-section-title {
+        font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+        color: #c9a96e; margin-bottom: 18px; padding-bottom: 10px;
+        border-bottom: 1px solid #ede5d8;
+    }
+    .modal-field { margin-bottom: 20px; }
+    .modal-label {
+        display: block; font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+        color: #5a4e3a; margin-bottom: 7px;
+    }
+    .modal-input {
+        width: 100%; font-family: 'Jost', sans-serif;
+        font-size: 14px; color: #2a2015;
+        background: white; border: 1px solid #ede5d8;
+        padding: 11px 14px; outline: none;
+        transition: border-color 0.2s;
+    }
+    .modal-input:focus { border-color: #c9a96e; }
+    .modal-input::placeholder { color: #9a8c78; }
+    .modal-select {
+        width: 100%; font-family: 'Jost', sans-serif;
+        font-size: 14px; color: #2a2015;
+        background: white; border: 1px solid #ede5d8;
+        padding: 11px 14px; outline: none; cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a8c78' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat; background-position: right 14px center;
+        transition: border-color 0.2s;
+    }
+    .modal-select:focus { border-color: #c9a96e; }
+    .modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .modal-checkboxes { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .modal-checkbox-label {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 13px; color: #5a4e3a; cursor: pointer;
+        padding: 8px 14px; background: white;
+        border: 1px solid #ede5d8; transition: border-color 0.2s;
+    }
+    .modal-checkbox-label:hover { border-color: #c9a96e; }
+    .modal-checkbox-label input { accent-color: #a07840; width: 14px; height: 14px; }
+
+    /* Important Dates */
+    .important-dates-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+    .important-date-row {
+        display: flex; gap: 10px; align-items: center;
+        background: white; border: 1px solid #ede5d8; padding: 12px 14px;
+    }
+    .important-date-row input[type="text"] {
+        flex: 1.2; font-family: 'Jost', sans-serif; font-size: 13px;
+        color: #2a2015; background: #f7f3ec;
+        border: 1px solid #ede5d8; padding: 8px 10px; outline: none;
+        transition: border-color 0.2s;
+    }
+    .important-date-row input[type="text"]:focus { border-color: #c9a96e; }
+    .important-date-row input[type="date"] {
+        flex: 1; font-family: 'Jost', sans-serif; font-size: 13px;
+        color: #2a2015; background: #f7f3ec;
+        border: 1px solid #ede5d8; padding: 8px 10px; outline: none;
+        cursor: pointer; transition: border-color 0.2s;
+    }
+    .important-date-row input[type="date"]:focus { border-color: #c9a96e; }
+    .date-remove-btn {
+        background: none; border: none; cursor: pointer;
+        color: #9a8c78; font-size: 18px; line-height: 1;
+        padding: 4px; transition: color 0.2s; flex-shrink: 0;
+    }
+    .date-remove-btn:hover { color: var(--red); }
+    .btn-add-date {
+        display: flex; align-items: center; gap: 8px;
+        font-family: 'Jost', sans-serif; font-size: 12px;
+        letter-spacing: 0.06em; text-transform: uppercase;
+        background: none; border: 1px dashed #d4c4ae;
+        color: #9a8c78; padding: 10px 18px; cursor: pointer;
+        transition: all 0.2s; width: 100%;
+        justify-content: center;
+    }
+    .btn-add-date:hover { border-color: #c9a96e; color: #a07840; background: rgba(201,169,110,0.04); }
+    .date-suggestions {
+        display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
+    }
+    .date-suggestion-chip {
+        font-size: 11px; letter-spacing: 0.05em;
+        padding: 5px 12px; border: 1px solid #ede5d8;
+        background: white; color: #5a4e3a; cursor: pointer;
+        transition: all 0.15s;
+    }
+    .date-suggestion-chip:hover { border-color: #c9a96e; color: #a07840; background: rgba(201,169,110,0.06); }
+
+    .modal-divider { height: 1px; background: #ede5d8; margin: 28px 0; }
+    .modal-footer {
+        padding: 20px 32px; background: white;
+        border-top: 1px solid #ede5d8;
+        display: flex; justify-content: flex-end; gap: 12px;
+        position: sticky; bottom: 0;
+    }
+    .btn-modal-cancel {
+        font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.08em;
+        text-transform: uppercase; background: none;
+        border: 1px solid #ede5d8; color: #5a4e3a;
+        padding: 11px 24px; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-modal-cancel:hover { border-color: #d4c4ae; color: #2a2015; }
+    .btn-modal-save {
+        font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.08em;
+        text-transform: uppercase; background: #c9a96e;
+        border: none; color: #111827;
+        padding: 11px 28px; cursor: pointer; transition: background 0.2s;
+    }
+    .btn-modal-save:hover { background: #e8d5b0; }
+    </style>
+    <div class="modal-overlay" id="add-member-modal" onclick="handleModalOverlayClick(event)">
+        <div class="modal-box" onclick="event.stopPropagation()">
+
+            <div class="modal-header">
+            <div>
+                <div class="modal-header-title">Add Planning Tree Member</div>
+                <div class="modal-header-sub">This person will appear on your planning tree</div>
+            </div>
+            <button class="modal-close" onclick="closeAddMemberModal()">×</button>
+            </div>
+
+            <div class="modal-body">
+
+            <!-- PERSONAL INFO -->
+            <div class="modal-section-title">Personal Information</div>
+            <div class="modal-row">
+                <div class="modal-field">
+                <label class="modal-label">First Name *</label>
+                <input class="modal-input" type="text" id="member-first-name" placeholder="e.g. Margaret">
+                </div>
+                <div class="modal-field">
+                <label class="modal-label">Last Name *</label>
+                <input class="modal-input" type="text" id="member-last-name" placeholder="e.g. Thompson">
+                </div>
+            </div>
+
+            <div class="modal-row">
+                <div class="modal-field">
+                <label class="modal-label">Relationship *</label>
+                <select class="modal-select" id="member-relationship">
+                    <option value="" disabled="" selected="">Select relationship…</option>
+                    <optgroup label="Immediate Family">
+                    <option>Spouse / Partner</option>
+                    <option>Son</option>
+                    <option>Daughter</option>
+                    <option>Father</option>
+                    <option>Mother</option>
+                    </optgroup>
+                    <optgroup label="Extended Family">
+                    <option>Grandson</option>
+                    <option>Granddaughter</option>
+                    <option>Brother</option>
+                    <option>Sister</option>
+                    <option>Uncle</option>
+                    <option>Aunt</option>
+                    <option>Nephew</option>
+                    <option>Niece</option>
+                    <option>Cousin</option>
+                    <option>Son-in-Law</option>
+                    <option>Daughter-in-Law</option>
+                    </optgroup>
+                    <optgroup label="Other">
+                    <option>Close Friend</option>
+                    <option>Other</option>
+                    </optgroup>
+                </select>
+                </div>
+                <div class="modal-field">
+                <label class="modal-label">Date of Birth *</label>
+                <input class="modal-input" type="date" id="member-dob">
+                </div>
+            </div>
+
+            <div class="modal-field">
+                <label class="modal-label">Email Address <span style="color:#9a8c78;font-weight:300;">(for gift notifications)</span></label>
+                <input class="modal-input" type="email" id="member-email" placeholder="e.g. margaret@example.com">
+            </div>
+
+            <div class="modal-divider"></div>
+
+            <!-- PLANNING -->
+            <div class="modal-section-title">Planning Links</div>
+            <div class="modal-field">
+                <label class="modal-label">Include in</label>
+                <div class="modal-checkboxes">
+                <label class="modal-checkbox-label">
+                    <input type="checkbox" id="plan-rempla" checked="">
+                    Remembrance Plan
+                </label>
+                <label class="modal-checkbox-label">
+                    <input type="checkbox" id="plan-estate">
+                    Estate Plan
+                </label>
+                </div>
+            </div>
+
+            <div class="modal-field">
+                <label class="modal-label">Notes <span style="color:#9a8c78;font-weight:300;">(optional)</span></label>
+                <textarea class="modal-input" id="member-notes" rows="2" placeholder="Any special context Rempla should know about this person…" style="resize:vertical;"></textarea>
+            </div>
+
+            <div class="modal-divider"></div>
+
+            <!-- IMPORTANT DATES -->
+            <div class="modal-section-title">Important Dates</div>
+            <p style="font-size:13px;color:#9a8c78;margin-bottom:16px;line-height:1.6;">Add meaningful dates so Rempla can remind you and schedule gifts around them.</p>
+
+            <div style="margin-bottom:12px;">
+                <div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#9a8c78;margin-bottom:8px;">Quick add</div>
+                <div class="date-suggestions">
+                <button class="date-suggestion-chip" onclick="addDateRow('Anniversary')">+ Anniversary</button>
+                <button class="date-suggestion-chip" onclick="addDateRow('Wedding')">+ Wedding</button>
+                <button class="date-suggestion-chip" onclick="addDateRow('Baptism')">+ Baptism</button>
+                <button class="date-suggestion-chip" onclick="addDateRow('Graduation')">+ Graduation</button>
+                <button class="date-suggestion-chip" onclick="addDateRow('Memorial Day')">+ Memorial Day</button>
+                <button class="date-suggestion-chip" onclick="addDateRow('Retirement')">+ Retirement</button>
+                </div>
+            </div>
+
+            <div class="important-dates-list" id="important-dates-list"></div>
+
+            <button class="btn-add-date" onclick="addDateRow('')">
+                <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add Custom Date
+            </button>
+
+            </div><!-- /modal-body -->
+
+            <div class="modal-footer">
+            <button class="btn-modal-cancel" onclick="closeAddMemberModal()">Cancel</button>
+            <button class="btn-modal-save" onclick="saveAddMember()">Add to Planning Tree</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script async text="javascript">
+        // ── Add Member Modal ──
+        function openAddMemberModal() {
+            document.getElementById('add-member-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            // Add a default birthday row pre-populated
+            var list = document.getElementById('important-dates-list');
+            if (list.children.length === 0) addDateRow('Birthday');
+        }
+
+        function closeAddMemberModal() {
+            document.getElementById('add-member-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function handleModalOverlayClick(e) {
+            if (e.target === document.getElementById('add-member-modal')) closeAddMemberModal();
+        }
+
+        function addDateRow(label) {
+            var list = document.getElementById('important-dates-list');
+            var row = document.createElement('div');
+            row.className = 'important-date-row';
+            row.innerHTML =
+            '<input type="text" placeholder="e.g. Anniversary, Baptism…" value="' + label + '" style="flex:1.2;">' +
+            '<input type="date" style="flex:1;">' +
+            '<button class="date-remove-btn" onclick="this.parentElement.remove()" title="Remove">×</button>';
+            list.appendChild(row);
+            // Focus the date field if label was pre-filled, else focus the text field
+            var inputs = row.querySelectorAll('input');
+            if (label) {
+            inputs[1].focus();
+            } else {
+            inputs[0].focus();
+            }
+        }
+
+        function saveAddMember() {
+            var firstName = document.getElementById('member-first-name').value.trim();
+            var lastName = document.getElementById('member-last-name').value.trim();
+            var relationship = document.getElementById('member-relationship').value;
+            var dob = document.getElementById('member-dob').value;
+
+            var valid = true;
+            // Reset borders
+            ['member-first-name','member-last-name','member-relationship','member-dob'].forEach(function(id) {
+            document.getElementById(id).style.borderColor = '';
+            });
+            if (!firstName) { document.getElementById('member-first-name').style.borderColor = '#b03030'; valid = false; }
+            if (!lastName) { document.getElementById('member-last-name').style.borderColor = '#b03030'; valid = false; }
+            if (!relationship) { document.getElementById('member-relationship').style.borderColor = '#b03030'; valid = false; }
+            if (!dob) { document.getElementById('member-dob').style.borderColor = '#b03030'; valid = false; }
+            if (!valid) {
+            if (!firstName) document.getElementById('member-first-name').focus();
+            else if (!lastName) document.getElementById('member-last-name').focus();
+            else if (!relationship) document.getElementById('member-relationship').focus();
+            else document.getElementById('member-dob').focus();
+            return;
+            }
+
+            // Show success toast and close
+            closeAddMemberModal();
+
+            // Reset form
+            document.getElementById('member-first-name').value = '';
+            document.getElementById('member-last-name').value = '';
+            document.getElementById('member-relationship').value = '';
+            document.getElementById('member-dob').value = '';
+            document.getElementById('member-email').value = '';
+            document.getElementById('member-notes').value = '';
+            document.getElementById('important-dates-list').innerHTML = '';
+            ['member-first-name','member-last-name','member-relationship','member-dob'].forEach(function(id) {
+            document.getElementById(id).style.borderColor = '';
+            });
+
+            // Show confirmation toast
+            var toast = document.getElementById('doc-upload-toast');
+            document.getElementById('doc-toast-msg').textContent = firstName + ' has been added to your planning tree.';
+            toast.style.display = 'flex';
+            setTimeout(function() { toast.style.display = 'none'; }, 3500);
+        }
+
+        // ── Tree / List View Toggle ──
+        function toggleTreeView() {
+            var btn = document.getElementById('tree-view-toggle-btn');
+            var treeView = document.getElementById('tree-view-tree');
+            var listView = document.getElementById('tree-view-list');
+            var labelTree = document.getElementById('toggle-label-tree');
+            var labelList = document.getElementById('toggle-label-list');
+            var isListActive = btn.classList.toggle('list-active');
+            if (isListActive) {
+                treeView.style.display = 'none';
+                listView.classList.add('active');
+                labelTree.classList.remove('active');
+                labelList.classList.add('active');
+            } else {
+                treeView.style.display = '';
+                listView.classList.remove('active');
+                labelTree.classList.add('active');
+                labelList.classList.remove('active');
+                setTimeout(drawTreeConnectors, 50);
+            }
+        }
+        // ── Dynamic Tree Connectors ──
+        function drawTreeConnectors() {
+            var canvas = document.querySelector('.tree-canvas');
+            if (!canvas) return;
+            var wrap = document.getElementById('tree-wrap');
+            if (!wrap) return;
+            var canvasRect = canvas.getBoundingClientRect();
+
+            function rel(el) {
+                var r = el.getBoundingClientRect();
+                return {
+                    cx: r.left + r.width / 2 - canvasRect.left + canvas.scrollLeft,
+                    top: r.top - canvasRect.top + canvas.scrollTop,
+                    bottom: r.bottom - canvasRect.top + canvas.scrollTop
+                };
+            }
+
+            // Draw grandchildren → children connectors
+            var spacer1 = document.getElementById('connector-gc-to-children');
+            if (spacer1) {
+                var robertGroup = document.getElementById('tree-group-robert-children');
+                var sarahGroup = document.getElementById('tree-group-sarah-children');
+                var robertNode = document.getElementById('tree-group-robert');
+                var sarahNode = document.getElementById('tree-group-sarah');
+
+                if (robertGroup && sarahGroup && robertNode && sarahNode) {
+                    var childNodes1 = robertGroup.querySelectorAll('.tree-node');
+                    var childNodes2 = sarahGroup.querySelectorAll('.tree-node');
+                    var parentNode1 = robertNode.querySelector('.tree-node');
+                    var parentNode2 = sarahNode.querySelector('.tree-node');
+
+                    var s1Rect = spacer1.getBoundingClientRect();
+                    var s1Top = s1Rect.top - canvasRect.top + canvas.scrollTop;
+                    var s1H = s1Rect.height;
+                    var s1Left = s1Rect.left - canvasRect.left + canvas.scrollLeft;
+                    var s1W = s1Rect.width;
+
+                    var lines = '';
+                    // Robert's children fan to Robert
+                    if (childNodes1.length > 0 && parentNode1) {
+                        var parentCx = rel(parentNode1).cx - s1Left;
+                        var childXs = [];
+                        childNodes1.forEach(function(n) { childXs.push(rel(n).cx - s1Left); });
+                        var midY = s1H * 0.5;
+                        childNodes1.forEach(function(n, i) {
+                            lines += '<line x1="' + childXs[i] + '" y1="0" x2="' + childXs[i] + '" y2="' + midY + '"/>';
+                        });
+                        if (childXs.length > 1) {
+                            lines += '<line x1="' + Math.min.apply(null, childXs) + '" y1="' + midY + '" x2="' + Math.max.apply(null, childXs) + '" y2="' + midY + '"/>';
+                        }
+                        lines += '<line x1="' + parentCx + '" y1="' + midY + '" x2="' + parentCx + '" y2="' + s1H + '"/>';
+                    }
+                    // Sarah's child to Sarah
+                    if (childNodes2.length > 0 && parentNode2) {
+                        var sCx = rel(childNodes2[0]).cx - s1Left;
+                        var spCx = rel(parentNode2).cx - s1Left;
+                        lines += '<line x1="' + sCx + '" y1="0" x2="' + spCx + '" y2="' + s1H + '"/>';
+                    }
+
+                    spacer1.innerHTML = '<svg style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:visible;" class="tree-connector-layer">' + lines + '</svg>';
+                }
+            }
+        }
+
+        // ── Planning Tree node detail ──
+        function showNodeDetail(name, relation, items) {
+            document.getElementById('nd-name').textContent = name;
+            document.getElementById('nd-relation').textContent = relation;
+            var giftsEl = document.getElementById('nd-gifts');
+            giftsEl.innerHTML = items.map(function(item) {
+            var color, bg, tag, icon;
+            if (item.type === 'rempla') {
+                color = '#c9a96e'; bg = 'rgba(201,169,110,0.1)'; tag = 'Remembrance'; icon = '';
+            } else if (item.type === 'estate') {
+                color = '#6080c8'; bg = 'rgba(80,120,200,0.08)'; tag = 'Estate'; icon = '';
+            } else if (item.type === 'digital') {
+                color = '#2a8a9a'; bg = 'rgba(42,138,154,0.08)'; tag = 'Digital Legacy';
+                icon = '<svg style="width:10px;height:10px;stroke:#2a8a9a;fill:none;stroke-width:2;margin-right:4px;vertical-align:middle;" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>';
+            } else if (item.type === 'fiduciary') {
+                color = '#8a6030'; bg = 'rgba(138,96,48,0.08)'; tag = 'Estate Fiduciary';
+                icon = '<svg style="width:10px;height:10px;stroke:#8a6030;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-right:4px;vertical-align:middle;" viewBox="0 0 24 24"><line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"21\"/><line x1=\"5\" y1=\"21\" x2=\"19\" y2=\"21\"/><line x1=\"3\" y1=\"7\" x2=\"21\" y2=\"7\"/><polyline points=\"3,7 6,13 9,7\"/><polyline points=\"15,7 18,13 21,7\"/></svg>';
+            } else if (item.type === 'protector') {
+                color = '#7b5ea7'; bg = 'rgba(123,94,167,0.08)'; tag = 'Plan Protector';
+                icon = '<svg style="width:10px;height:10px;stroke:#7b5ea7;fill:none;stroke-width:2;margin-right:4px;vertical-align:middle;" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>';
+            } else {
+                color = '#9a8c78'; bg = '#f7f3ec'; tag = 'Not set'; icon = '';
+            }
+            return '<div style="padding:10px 12px;background:' + bg + ';border-left:3px solid ' + color + ';">' +
+                '<div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:' + color + ';margin-bottom:4px;">' + icon + tag + '</div>' +
+                '<div style="font-size:12px;color:#5a4e3a;line-height:1.5;">' + item.label + '</div>' +
+                '</div>';
+            }).join('');
+            document.getElementById('node-detail').style.display = 'block';
+            document.getElementById('node-detail-overlay').style.display = 'block';
+        }
+
+        // Draw connectors on load, resize, and scroll of tree canvas
+        window.addEventListener('load', function() { setTimeout(drawTreeConnectors, 100); });
+        window.addEventListener('resize', function() { clearTimeout(window._treeTimeout); window._treeTimeout = setTimeout(drawTreeConnectors, 150); });
+        var treeCanvas = document.querySelector('.tree-canvas');
+        if (treeCanvas) treeCanvas.addEventListener('scroll', function() { requestAnimationFrame(drawTreeConnectors); });
+    </script>
+</body>
+</html>

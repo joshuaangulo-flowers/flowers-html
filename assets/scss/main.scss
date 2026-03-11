@@ -1,0 +1,889 @@
+@use 'colors';
+@use 'basics';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Jost', sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: colors.$cream-color;
+    
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 32px;
+        height: 64px;
+        background-color: white;
+        border-bottom: 1px solid colors.$warm-mid-color;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            li {
+                margin: 0 10px;
+
+                .the-logo {
+                    font-family: 'Cormorant Garamond', serif;
+                    font-size: 22px;
+                    color: colors.$gold-dark-color;
+                    font-weight: 500;
+                    margin-right: 8px;
+                    cursor: pointer;
+                }
+
+                &.breadcrumb {
+                    font-size: 12px;
+                    color: colors.$text-mid-color;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                a.dash-back {
+                    font-size: 12px;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                    color: colors.$text-light-color;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    background: none;
+                    border: none;
+                    transition: color 0.2s;
+
+                    svg {
+                        width: 14px;
+                        height: 14px;
+                        stroke: currentColor;
+                        fill: none;
+                        stroke-width: 2;
+                    }
+                }
+
+                &.notifications {
+                    position: relative;
+
+                    a.inbox-bell {
+                        position: relative;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        padding: 8px;
+                        transition: color 0.2s;
+
+                        svg {
+                            width: 20px;
+                            height: 20px;
+                            stroke: colors.$text-mid-color;
+                            fill: none;
+                            stroke-width: 1.8;
+                        }
+                    }
+
+                    .notif-dropdown {
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        right: 0;
+                        width: 340px;
+                        background: white;
+                        border: 1px solid colors.$warm-mid-color;
+                        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+                        z-index: 100;
+
+                        .notif-dropdown-header {
+                            padding: 16px 20px;
+                            border-bottom: 1px solid colors.$warm-mid-color;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+ 
+                            button {
+                                font-size: 11px;
+                                letter-spacing: 0.06em;
+                                text-transform: uppercase;
+                                background: none;
+                                border: none;
+                                color: colors.$gold-dark-color;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .notif-item {
+                            padding: 14px 20px;
+                            border-bottom: 1px solid colors.$warm-mid-color;
+                            display: flex;
+                            gap: 12px;
+                            align-items: flex-start;
+                            transition: background 0.15s;
+                            cursor: pointer;
+
+                            .notif-icon {
+                                width: 32px;
+                                height: 32px;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 14px;
+                                flex-shrink: 0;
+                            }
+
+                            .notif-text {
+                                font-size: 13px;
+                                color: colors.$text-mid-color;
+                                line-height: 1.5;
+                            }
+
+                            .notif-time {
+                                font-size: 11px;
+                                color: colors.$text-light-color;
+                                margin-top: 4px;
+                            }
+
+                            &.unread {
+                                background: rgba(201, 169, 110, 0.04);
+                            }
+                        }
+                    }
+                }
+
+                a.dash-avatar {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, colors.$gold-color 0%, colors.$gold-dark-color 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: colors.$navy-deep-color;
+                }
+
+                &.dash-search {
+                    position: relative;
+
+                    svg {
+                        position: absolute;
+                        left: 12px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 14px;
+                        height: 14px;
+                        stroke: colors.$text-light-color;
+                        fill: none;
+                        stroke-width: 2;
+                    }
+                    input {
+                        font-size: 13px;
+                        color: colors.$text-dark-color;
+                        background: colors.$cream-color;
+                        border: 1px solid colors.$warm-mid-color;
+                        padding: 8px 14px 8px 36px;
+                        width: 240px;
+                        outline: none;
+                        transition: border-color 0.2s, width 0.3s;
+
+                        &:focus {
+                            border-color: colors.$gold-color;
+                            width: 320px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .dash-content {
+        display: flex;
+        flex-direction: row;
+    }
+
+    aside {
+        width: 220px;
+        flex-shrink: 0;
+        background: white;
+        border-right: 1px solid colors.$warm-mid-color;
+        padding: 28px 0;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 64px;
+        height: calc(100vh - 64px);
+        overflow-y: auto;
+
+        .sidebar-section {
+            margin-bottom: 32px;
+            padding: 0 20px;
+
+            .sidebar-section-label {
+                font-size: 10px;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: colors.$text-light-color;
+                margin-bottom: 10px;
+                padding-left: 12px;
+            }
+
+            .sidebar-link {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 9px 12px;
+                font-size: 13px;
+                font-weight: 400;
+                color: colors.$text-mid-color;
+                cursor: pointer;
+                border-radius: 2px;
+                transition: background 0.15s, color 0.15s;
+                text-decoration: none;
+                margin-bottom: 2px;
+
+                svg {
+                    width: 16px;
+                    height: 16px;
+                    stroke: currentColor;
+                    fill: none;
+                    stroke-width: 1.5;
+                    flex-shrink: 0;
+                }
+
+                &.active,
+                &:hover {
+                    background: colors.$cream-color;
+                    color: colors.$gold-dark-color;
+                }
+            }
+        }
+
+        .sidebar-user {
+            margin-top: auto;
+            padding: 16px 20px;
+            border-top: 1px solid colors.$warm-mid-color;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .dash-avatar {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, colors.$gold-color 0%, colors.$gold-dark-color 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+                font-weight: 500;
+                color: colors.$navy-deep-color;
+            }
+
+            .sidebar-user-name {
+                font-size: 13px;
+                font-weight: 500;
+                color: colors.$text-dark-color;
+            }
+
+            .sidebar-user-plan {
+                font-size: 11px;
+                color: colors.$text-light-color;
+            }
+        }
+    }
+
+    .dash-main {
+        flex: 1;
+        padding: 40px 48px;
+        overflow-y: auto;
+
+        // Remembrance Plan
+        .planning-tree-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+
+            .section-eyebrow {
+                font-size: 11px;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: colors.$gold-color;
+                margin-bottom: 16px;
+            }
+
+            .planning-tree-title {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 26px;
+                font-weight: 400;
+                color: colors.$text-dark-color;
+            }
+
+            .btn-add-member {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-family: 'Jost', sans-serif;
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                background: colors.$gold-color;
+                color: colors.$navy-deep-color;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                transition: background 0.2s;
+
+                svg {
+                    width: 14px;
+                    height: 14px;
+                    stroke: colors.$navy-deep-color;
+                    fill: none;
+                    stroke-width: 2.5;
+                }
+            }
+        }
+        .tree-view-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+
+            .tree-view-toggle-label {
+                font-size: 12px;
+                color: colors.$text-light-color;
+                letter-spacing: .04em;
+                cursor: pointer;
+                transition: color 0.2s;
+
+                &.active {
+                    color: colors.$text-dark-color;
+                    font-weight: 500;
+                }
+            }
+
+            .tree-view-toggle-track {
+                width: 44px;
+                height: 24px;
+                background: colors.$warm-mid-color;
+                border-radius: 12px;
+                cursor: pointer;
+                position: relative;
+                transition: background 0.3s;
+                border: none;
+                padding: 0;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 3px;
+                    left: 3px;
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 50%;
+                    background: white;
+                    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+                    transition: transform 0.3s;
+                }
+            }
+        }
+
+        .rempla-chat {
+            background: white;
+            border: 2px solid colors.$gold-color;
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            position: relative;
+            box-shadow: 0 0 16px rgba(201, 169, 110, 0.15), 0 0 4px rgba(201, 169, 110, 0.1);
+            animation: chatGlowPulse 4s ease-in-out infinite;
+
+            .chat-header {
+                padding: 16px 20px;
+                border-bottom: 1px solid colors.$warm-mid-color;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+
+                .chat-ai-avatar {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: colors.$navy-deep-color;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    overflow: visible;
+                    position: relative;
+
+                    svg {
+                        width: 18px;
+                        height: 18px;
+                        stroke: colors.$gold-color;
+                        fill: none;
+                        stroke-width: 1.5;
+                    }
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        inset: -3px;
+                        border-radius: 50%;
+                        border: 2px solid colors.$gold-color;
+                        opacity: 0.5;
+                        animation: avatarBreathe 3s ease-in-out infinite;
+                    }
+                }
+
+                .chat-header-title {
+                    flex: 1;
+
+                    .chat-header-name {
+                        font-size: 14px;
+                        font-weight: 600;
+                        color: colors.$text-dark-color;
+                    }
+
+                    .chat-header-status {
+                        font-size: 11px;
+                        color: colors.$text-light-color;
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+
+                        &::before {
+                            content: '';
+                            width: 6px;
+                            height: 6px;
+                            border-radius: 50%;
+                            background: #4caf50;
+                            flex-shrink: 0;
+                            box-shadow: 0 0 4px rgba(76, 175, 80, 0.5);
+                        }
+                    }
+
+                    .chat-typing-dots {
+                        display: inline-flex;
+                        gap: 3px;
+                        margin-left: auto;
+                        opacity: 0.5;
+                    }
+                }
+            }
+
+            .chat-messages {
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                min-height: 280px;
+                max-height: 400px;
+                overflow-y: auto;
+
+                .chat-msg {
+                    max-width: 100%;
+
+                    &.chat-msg-ai {
+                        background: colors.$cream-color;
+                        padding: 14px 16px;
+                        font-size: 13px;
+                        line-height: 1.65;
+                        color: colors.$text-mid-color;
+                        border-radius: 2px 14px 14px 14px;
+                    }
+                }
+
+                .chat-suggestion {
+                    font-size: 12px;
+                    color: colors.$gold-dark-color;
+                    padding: 8px 16px;
+                    border: 1px solid rgba(201, 169, 110, 0.3);
+                    cursor: pointer;
+                    border-radius: 20px;
+                    transition: all 0.2s;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 5px;
+                    background: white;
+                }
+            }
+
+            .chat-input-area {
+                padding: 16px 20px;
+                border-top: 1px solid colors.$warm-mid-color;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+
+                .chat-input {
+                    flex: 1;
+                    background: colors.$cream-color;
+                    border: 1.5px solid transparent;
+                    padding: 11px 16px;
+                    font-family: 'Jost', sans-serif;
+                    font-size: 13px;
+                    color: colors.$text-dark-color;
+                    outline: none;
+                    border-radius: 22px;
+                    transition: border-color 0.2s, box-shadow 0.2s;
+                }
+
+                .chat-send {
+                    width: 38px;
+                    height: 38px;
+                    background: colors.$gold-color;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: background 0.2s, transform 0.15s;
+                    border-radius: 50%;
+
+                    svg {
+                       width: 16px;
+                        height: 16px;
+                        stroke: colors.$navy-deep-color;
+                        fill: none;
+                        stroke-width: 2;
+                    }
+                }
+            }
+        }
+
+        .tree-canvas {
+            background: white;
+            border: 1px solid colors.$warm-mid-color;
+            padding: 48px;
+            min-height: 500px;
+            position: relative;
+            overflow: auto;
+ 
+            .tree-wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                min-width: 700px;
+
+                .tree-generation {
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    gap: 6px;
+                    position: relative;
+                    z-index: 1;
+
+                    .tree-generation-group {
+                        display: flex;
+                        gap: 6px;
+                        justify-content: center;
+
+                        .tree-node {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 10px;
+                            padding: 12px 20px 12px 14px;
+                            background: colors.$cream-color;
+                            border: 1px solid colors.$warm-mid-color;
+                            min-width: 140px;
+                            cursor: pointer;
+                            position: relative;
+                            transition: border-color 0.2s, box-shadow 0.2s;
+
+                            .tree-node-avatar {
+                                width: 36px;
+                                height: 36px;
+                                border-radius: 50%;
+                                background: linear-gradient(135deg, colors.$warm-mid-color 0%, colors.$warm-dark-color 100%);
+                                flex-shrink: 0;
+                                overflow: hidden;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 14px;
+                                color: colors.$text-mid-color;
+                            }
+
+                            .tree-node-info {
+                                flex: 1;
+
+                                .tree-node-name {
+                                    font-size: 13px;
+                                    font-weight: 500;
+                                    color: colors.$text-dark-color;
+                                }
+                                .tree-node-relation {
+                                    font-size: 11px;
+                                    color: colors.$text-light-color;
+                                    margin-top: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .tree-gen-spacer {
+                    height: 40px;
+                    width: 100%;
+                    position: relative;
+                    z-index: 0;
+
+                    .tree-connector-layer {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        pointer-events: none;
+                        z-index: 0;
+                    }
+                }
+
+                .tree-row {
+                    display: flex;
+                    justify-content: center;
+                    gap: 24px;
+                    position: relative;
+                    margin-bottom: 0;
+
+                    .tree-node {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 12px 20px 12px 14px;
+                        background: colors.$cream-color;
+                        border: 1px solid colors.$warm-mid-color;
+                        min-width: 140px;
+                        cursor: pointer;
+                        position: relative;
+                        transition: border-color 0.2s, box-shadow 0.2s;
+
+                        &.tree-node.primary {
+                            border-color: colors.$gold-color;
+                            background: colors.$white-color;
+                        }
+
+                        .tree-node-info {
+                            flex: 1;
+
+                            .tree-node-name {
+                                font-size: 13px;
+                                font-weight: 500;
+                                color: colors.$text-dark-color;
+                            }
+                            .tree-node-relation {
+                                font-size: 11px;
+                                color: colors.$text-light-color;
+                                margin-top: 2px;
+                            }
+                        }
+
+                        .tree-node-avatar {
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background: linear-gradient(135deg, colors.$warm-mid-color 0%, colors.$warm-dark-color 100%);
+                            flex-shrink: 0;
+                            overflow: hidden;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 14px;
+                            color: colors.$text-mid-color;
+                        }
+                    }
+                }
+            }
+
+            .tree-node {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 20px 12px 14px;
+                background: colors.$cream-color;
+                border: 1px solid colors.$warm-mid-color;
+                min-width: 140px;
+                cursor: pointer;
+                position: relative;
+                transition: border-color 0.2s, box-shadow 0.2s;
+
+                .tree-node-avatar {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, colors.$warm-mid-color 0%, colors.$warm-dark-color 100%);
+                    flex-shrink: 0;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 14px;
+                    color: colors.$text-mid-color;
+                }
+
+                .tree-node-info {
+                    flex: 1;
+
+                    .tree-node-name {
+                        font-size: 13px;
+                        font-weight: 500;
+                        color: colors.$text-dark-color;
+                    }
+
+                    .tree-node-relation {
+                        font-size: 11px;
+                        color: colors.$text-light-color;
+                        margin-top: 2px;
+                    }
+                }
+            }
+        }
+
+        .tree-list-view {
+            display: none;
+
+            &.active {
+                display: block;
+            }
+
+            .tree-list-group {
+                margin-bottom: 24px;
+
+                .tree-list-group-title {
+                    font-size: 11px;
+                    letter-spacing: .1em;
+                    text-transform: uppercase;
+                    color: colors.$text-light-color;
+                    margin-bottom: 10px;
+                    padding-bottom: 8px;
+                    border-bottom: 1px solid colors.$warm-mid-color;
+                }
+
+                .tree-list-row {
+                    display: flex;
+                    align-items: center;
+                    gap: 14px;
+                    padding: 14px 16px;
+                    background: colors.$white-color;
+                    border: 1px solid colors.$warm-mid-color;
+                    margin-bottom: 6px;
+                    cursor: pointer;
+                    transition: border-color 0.2s, box-shadow 0.2s;
+
+                    .tree-list-avatar {
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 18px;
+                        flex-shrink: 0;
+                    }
+
+                    .tree-list-info {
+                        flex: 1;
+                        min-width: 0;
+
+                        .tree-list-name {
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: colors.$text-dark-color;
+                        }
+
+                        .tree-list-relation {
+                            font-size: 12px;
+                            color: colors.$text-light-color;
+                            margin-top: 2px;
+                        }
+                    }
+
+                    .tree-list-status {
+                        font-size: 11px;
+                        color: colors.$text-light-color;
+                        text-align: right;
+                        flex-shrink: 0;
+                        min-width: 80px;
+
+                        .status-dot {
+                            display: inline-block;
+                            width: 7px;
+                            height: 7px;
+                            border-radius: 50%;
+                            margin-right: 5px;
+                        }
+                    }
+
+                    .tree-list-tags {
+                        display: flex;
+                        gap: 6px;
+                        flex-wrap: wrap;
+                        flex-shrink: 0;
+
+                        .tree-list-tag {
+                            font-size: 10px;
+                            letter-spacing: .06em;
+                            text-transform: uppercase;
+                            padding: 3px 10px;
+                            border-radius: 2px;
+                            white-space: nowrap;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 4px;
+
+                            &.tag-rempla {
+                                background: rgba(201, 169, 110, 0.12);
+                                color: colors.$gold-dark-color;
+                            }
+
+                            &.tree-list-tag.tag-estate {
+                                background: rgba(80, 120, 200, 0.08);
+                                color: #4060b0;
+                            }
+
+                            &.tag-digital {
+                                background: rgba(42, 138, 154, 0.08);
+                                color: #2a8a9a;
+                            }
+
+                            &.tag-fiduciary {
+                                background: rgba(138, 96, 48, 0.08);
+                                color: #8a6030;
+                            }
+
+                            &.tag-none {
+                                background: colors.$cream-color;
+                                color: colors.$text-light-color;
+                            }
+
+                            &.tag-protector {
+                                background: rgba(123, 94, 167, 0.08);
+                                color: #7b5ea7;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
