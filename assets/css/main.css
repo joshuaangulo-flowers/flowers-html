@@ -308,26 +308,61 @@ a {
   padding: 40px 48px;
   overflow-y: auto;
 }
-.container .dash-main .planning-tree-header {
+.container .dash-main .planning-tree-header, .container .dash-main .plan-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 28px;
 }
-.container .dash-main .planning-tree-header .section-eyebrow {
+.container .dash-main .planning-tree-header .section-eyebrow, .container .dash-main .plan-header .section-eyebrow {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #c9a96e;
   margin-bottom: 16px;
 }
-.container .dash-main .planning-tree-header .planning-tree-title {
+.container .dash-main .planning-tree-header .planning-tree-title, .container .dash-main .planning-tree-header .plan-title, .container .dash-main .plan-header .planning-tree-title, .container .dash-main .plan-header .plan-title {
   font-family: "Cormorant Garamond", serif;
   font-size: 26px;
   font-weight: 400;
   color: #2a2015;
 }
-.container .dash-main .planning-tree-header .btn-add-member {
+.container .dash-main .planning-tree-header .plan-summary, .container .dash-main .plan-header .plan-summary {
+  text-align: right;
+}
+.container .dash-main .planning-tree-header .plan-summary .plan-total, .container .dash-main .plan-header .plan-summary .plan-total {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  color: #2a2015;
+}
+.container .dash-main .planning-tree-header .plan-summary .plan-total-label, .container .dash-main .plan-header .plan-summary .plan-total-label {
+  font-size: 12px;
+  color: #9a8c78;
+  margin-top: 2px;
+}
+.container .dash-main .planning-tree-header .plan-summary .plan-progress, .container .dash-main .plan-header .plan-summary .plan-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.container .dash-main .planning-tree-header .plan-summary .plan-progress .progress-bar, .container .dash-main .plan-header .plan-summary .plan-progress .progress-bar {
+  flex: 1;
+  height: 4px;
+  background: #ede5d8;
+  min-width: 120px;
+}
+.container .dash-main .planning-tree-header .plan-summary .plan-progress .progress-bar .progress-fill, .container .dash-main .plan-header .plan-summary .plan-progress .progress-bar .progress-fill {
+  height: 100%;
+  background: #c9a96e;
+  width: 42%;
+  transition: width 1s ease;
+}
+.container .dash-main .planning-tree-header .plan-summary .plan-progress .progress-label, .container .dash-main .plan-header .plan-summary .plan-progress .progress-label {
+  font-size: 11px;
+  color: #9a8c78;
+}
+.container .dash-main .planning-tree-header .btn-add-member, .container .dash-main .plan-header .btn-add-member {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -342,7 +377,7 @@ a {
   cursor: pointer;
   transition: background 0.2s;
 }
-.container .dash-main .planning-tree-header .btn-add-member svg {
+.container .dash-main .planning-tree-header .btn-add-member svg, .container .dash-main .plan-header .btn-add-member svg {
   width: 14px;
   height: 14px;
   stroke: #111827;
@@ -864,6 +899,150 @@ a {
   font-size: 14px;
   font-weight: 500;
   color: #111827;
+}
+
+.dash-tab {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  cursor: pointer;
+  color: #9a8c78;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: "Jost", sans-serif;
+}
+.dash-tab.active {
+  color: #a07840;
+  border-bottom-color: #c9a96e;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+.btn-add-gift {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  border: 2px dashed #d4c4ae;
+  background: none;
+  font-family: "Jost", sans-serif;
+  font-size: 13px;
+  color: #9a8c78;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-hero-primary {
+  font-family: "Jost", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #c9a96e;
+  color: #111827;
+  border: none;
+  padding: 15px 32px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.3s;
+}
+.btn-hero-primary:hover {
+  background: #a07840;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(201, 169, 110, 0.3);
+}
+
+.gift-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.gift-cards .gift-card {
+  background: white;
+  border: 1px solid #ede5d8;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.gift-cards .gift-card .gift-card-icon {
+  width: 56px;
+  height: 56px;
+  background: #f7f3ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+.gift-cards .gift-card .gift-card-price {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  color: #2a2015;
+}
+.gift-cards .gift-card .gift-card-status {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+.gift-cards .gift-card .gift-card-status.status-stored {
+  background: rgba(80, 160, 80, 0.1);
+  color: #3a8a3a;
+}
+.gift-cards .gift-card .gift-card-body {
+  flex: 1;
+}
+.gift-cards .gift-card .gift-card-body .gift-card-type {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin-bottom: 6px;
+}
+.gift-cards .gift-card .gift-card-body .gift-card-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #2a2015;
+  margin-bottom: 4px;
+}
+.gift-cards .gift-card .gift-card-body .gift-card-detail {
+  font-size: 13px;
+  color: #9a8c78;
+  line-height: 1.5;
+}
+.gift-cards .gift-card .gift-card-body .gift-card-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.gift-cards .gift-card .gift-card-body .gift-card-meta .gift-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #9a8c78;
+}
+.gift-cards .gift-card .gift-card-body .gift-card-meta .gift-meta-item svg {
+  width: 12px;
+  height: 12px;
+  stroke: #9a8c78;
+  fill: none;
+  stroke-width: 1.5;
 }
 
 /*# sourceMappingURL=main.css.map */
