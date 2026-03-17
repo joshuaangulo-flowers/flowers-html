@@ -688,10 +688,10 @@ a {
   background-color: #c9a96e;
   animation: typingBounce 1.4s ease-in-out infinite;
 }
-.container .dash-main .rempla-chat .chat-header .chat-header-title .chat-typing-dots span.chat-typing-dots span:nth-child(2) {
+.container .dash-main .rempla-chat .chat-header .chat-header-title .chat-typing-dots span:nth-child(2) {
   animation-delay: 0.2s;
 }
-.container .dash-main .rempla-chat .chat-header .chat-header-title .chat-typing-dots span.chat-typing-dots span:nth-child(3) {
+.container .dash-main .rempla-chat .chat-header .chat-header-title .chat-typing-dots span:nth-child(3) {
   animation-delay: 0.4s;
 }
 .container .dash-main .rempla-chat .chat-messages {
@@ -1066,10 +1066,10 @@ a {
   background-color: #c9a96e;
   animation: typingBounce 1.4s ease-in-out infinite;
 }
-.tab-with-sidebar .chat-typing-dots span.chat-typing-dots span:nth-child(2) {
+.tab-with-sidebar .chat-typing-dots span:nth-child(2) {
   animation-delay: 0.2s;
 }
-.tab-with-sidebar .chat-typing-dots span.chat-typing-dots span:nth-child(3) {
+.tab-with-sidebar .chat-typing-dots span:nth-child(3) {
   animation-delay: 0.4s;
 }
 
