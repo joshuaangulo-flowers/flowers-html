@@ -1869,3 +1869,28 @@
         }
     }
 }
+
+.tooltip-flag {
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: colors.$navy-color;
+        color: colors.$gold-light-color;
+        padding: 5px 10px;
+        border-radius: 2px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
+}

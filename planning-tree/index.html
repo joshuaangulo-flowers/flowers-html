@@ -108,19 +108,19 @@
 
                     <!-- Legend -->
                     <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px;">
-                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;"><div style="width:12px;height:12px;background:rgba(201,169,110,0.2);border:1.5px solid #c9a96e;border-radius:2px;"></div>Remembrance Plan</div>
-                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;"><div style="width:12px;height:12px;background:rgba(80,120,200,0.12);border:1.5px solid #6080c8;border-radius:2px;"></div>Estate Plan</div>
-                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;"><div style="width:12px;height:12px;background:rgba(80,160,80,0.12);border:1.5px solid #50a050;border-radius:2px;"></div>Both</div>
-                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;"><div style="width:12px;height:12px;background:#f7f3ec;border:1.5px dashed #d4c4ae;border-radius:2px;"></div>No plan yet</div>
-                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;">
+                        <div class="tooltip-flag" style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;" data-tooltip="Lorem Ipsum Dolor"><div style="width:12px;height:12px;background:rgba(201,169,110,0.2);border:1.5px solid #c9a96e;border-radius:2px;"></div>Remembrance Plan</div>
+                        <div class="tooltip-flag" style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;" data-tooltip="Lorem Ipsum Dolor"><div style="width:12px;height:12px;background:rgba(80,120,200,0.12);border:1.5px solid #6080c8;border-radius:2px;"></div>Estate Plan</div>
+                        <div class="tooltip-flag" style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;" data-tooltip="Lorem Ipsum Dolor"><div style="width:12px;height:12px;background:rgba(80,160,80,0.12);border:1.5px solid #50a050;border-radius:2px;"></div>Both</div>
+                        <div class="tooltip-flag" style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;" data-tooltip="Lorem Ipsum Dolor"><div style="width:12px;height:12px;background:#f7f3ec;border:1.5px dashed #d4c4ae;border-radius:2px;"></div>No plan yet</div>
+                        <div class="tooltip-flag" style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;" data-tooltip="Lorem Ipsum Dolor">
                             <svg style="width:13px;height:13px;stroke:#7b5ea7;fill:none;stroke-width:2;" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                             Plan Protector
                         </div>
-                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;">
+                        <div class="tooltip-flag" style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;" data-tooltip="Lorem Ipsum Dolor">
                             <svg style="width:13px;height:13px;stroke:#2a8a9a;fill:none;stroke-width:2;" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
                             Digital Legacy Beneficiary
                         </div>
-                        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;">
+                        <div class="tooltip-flag" style="display:flex;align-items:center;gap:7px;font-size:12px;color:#9a8c78;" data-tooltip="Lorem Ipsum Dolor">
                             <svg style="width:13px;height:13px;stroke:#8a6030;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="5" y1="21" x2="19" y2="21"></line><line x1="3" y1="7" x2="21" y2="7"></line><polyline points="3,7 6,13 9,7"></polyline><polyline points="15,7 18,13 21,7"></polyline></svg>
                             Estate Fiduciary
                         </div>
@@ -501,7 +501,29 @@
                 </div>
                 <div class="modal-field">
                     <label class="modal-label">Address *</label>
-                    <input class="modal-input" type="text" id="member-address" placeholder="e.g. 123 Main St, Anytown, USA">
+                    <input class="modal-input" type="text" id="member-address" placeholder="e.g. 123 Main St">
+                </div>
+            </div>
+
+            <div class="modal-row">
+                <div class="modal-field">
+                    <label class="modal-label">Address Line 2</label>
+                    <input class="modal-input" type="text" id="member-address-line2" placeholder="e.g. Apt 4B">
+                </div>
+                <div class="modal-field">
+                    <label class="modal-label">City *</label>
+                    <input class="modal-input" type="text" id="member-city" placeholder="e.g. Anytown">
+                </div>
+            </div>
+
+            <div class="modal-row">
+                <div class="modal-field">
+                    <label class="modal-label">State *</label>
+                    <input class="modal-input" type="text" id="member-state" placeholder="e.g. AnyState">
+                </div>
+                <div class="modal-field">
+                    <label class="modal-label">ZIP *</label>
+                    <input class="modal-input" type="text" id="member-zip" placeholder="e.g. 12345">
                 </div>
             </div>
 
@@ -666,6 +688,10 @@
             var emailaddress = document.getElementById('member-email').value.trim();
             var phone = document.getElementById('member-phone').value.trim();
             var address = document.getElementById('member-address').value.trim();
+            var addressLine2 = document.getElementById('member-address-line2').value.trim();
+            var city = document.getElementById('member-city').value.trim();
+            var state = document.getElementById('member-state').value.trim();
+            var zip = document.getElementById('member-zip').value.trim();
 
             var valid = true;
             // Reset borders
@@ -679,11 +705,17 @@
             if (!validateEmail(emailaddress)) { document.getElementById('member-email').style.borderColor = '#b03030'; valid = false; }
             if (!validatePhone(phone)) { document.getElementById('member-phone').style.borderColor = '#b03030'; valid = false; }
             if (!address) { document.getElementById('member-address').style.borderColor = '#b03030'; valid = false; }
+            if (!city) { document.getElementById('member-city').style.borderColor = '#b03030'; valid = false; }
+            if (!state) { document.getElementById('member-state').style.borderColor = '#b03030'; valid = false; }
+            if (!zip) { document.getElementById('member-zip').style.borderColor = '#b03030'; valid = false; }
             if (!valid) {
             if (!firstName) document.getElementById('member-first-name').focus();
             else if (!lastName) document.getElementById('member-last-name').focus();
             else if (!validatePhone(phone)) document.getElementById('member-phone').focus();
             else if (!address) document.getElementById('member-address').focus();
+            else if (!city) document.getElementById('member-city').focus();
+            else if (!state) document.getElementById('member-state').focus();
+            else if (!zip) document.getElementById('member-zip').focus();
             else if (!relationship) document.getElementById('member-relationship').focus();
             else if (!dob) document.getElementById('member-dob').focus();
             else document.getElementById('member-email').focus();
@@ -699,6 +731,10 @@
             document.getElementById('member-relationship').value = '';
             document.getElementById('member-phone').value = '';
             document.getElementById('member-address').value = '';
+            document.getElementById('member-address-line2').value = '';
+            document.getElementById('member-city').value = '';
+            document.getElementById('member-state').value = '';
+            document.getElementById('member-zip').value = '';
             document.getElementById('member-dob').value = '';
             document.getElementById('member-email').value = '';
             document.getElementById('member-notes').value = '';
